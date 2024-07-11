@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "mC+pFYK0k877ChnoDE2yw5MuPP06/ugXJlEamqEEUIxircdTVBYiSmvVg15Is6xM/2QC8LPxVICEtXzrwRcFkA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\ferrichiello\\source\\solo\\TestProject\\TestProject\\TestProject.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ferrichiello\\.nuget\\packages\\dumpify\\0.6.6\\dumpify.0.6.6.nupkg.sha512",
+    "C:\\Users\\ferrichiello\\.nuget\\packages\\fluentvalidation\\11.9.2\\fluentvalidation.11.9.2.nupkg.sha512",
+    "C:\\Users\\ferrichiello\\.nuget\\packages\\fuzzysharp\\2.0.2\\fuzzysharp.2.0.2.nupkg.sha512",
+    "C:\\Users\\ferrichiello\\.nuget\\packages\\spectre.console\\0.48.0\\spectre.console.0.48.0.nupkg.sha512",
+    "C:\\Users\\ferrichiello\\.nuget\\packages\\system.memory\\4.5.5\\system.memory.4.5.5.nupkg.sha512"
+  ],
+  "logs": []
+}
