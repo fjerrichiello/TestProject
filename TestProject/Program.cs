@@ -1,7 +1,7 @@
 ﻿using TestProject.Validation;
-using TestProject.Validation.ParamAuthorizer;
+using TestProject.Validation.FluentVersion;
 
-var ownAuth = new OwnAuthorizer();
+var ownAuth = new ParamsAuthorizer();
 
 var member = new Member(Guid.NewGuid(), MemberType.Member, true, true, true,
     DateOnly.FromDateTime(DateTime.UtcNow));

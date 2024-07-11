@@ -1,18 +1,18 @@
 ﻿using FluentAssertions;
 using TestProject.Validation;
-using TestProject.Validation.ParamAuthorizer;
+using TestProject.Validation.FluentVersion;
 using Xunit.Abstractions;
 
-namespace UnitTests.Validation.ParamAuthorizer;
+namespace UnitTests.Validation.FluentVersion;
 
-public class ParamAuthorizerTest
+public class FluentAuthorizerTest
 {
-    private static readonly OwnAuthorizer Authorizer = new();
+    private static readonly ParamsAuthorizer Authorizer = new();
 
     private readonly ITestOutputHelper _output;
 
 
-    public ParamAuthorizerTest(ITestOutputHelper output)
+    public FluentAuthorizerTest(ITestOutputHelper output)
     {
         _output = output;
     }
