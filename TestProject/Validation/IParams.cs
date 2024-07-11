@@ -1,4 +1,7 @@
-﻿namespace TestProject.Validation;
+﻿using System;
+using System.Collections.Generic;
+
+namespace TestProject.Validation;
 
 public interface IParams
 {

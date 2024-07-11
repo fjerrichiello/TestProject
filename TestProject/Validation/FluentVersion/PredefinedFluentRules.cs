@@ -1,4 +1,8 @@
-﻿namespace TestProject.Validation.FluentVersion;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace TestProject.Validation.FluentVersion;
 
 public static class PredefinedFluentRules
 {
