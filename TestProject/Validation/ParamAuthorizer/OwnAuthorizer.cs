@@ -1,17 +1,37 @@
-﻿namespace TestProject.Validation.ParamAuthorizer;
+﻿using Spectre.Console;
+
+namespace TestProject.Validation.ParamAuthorizer;
 
 public class OwnAuthorizer : ParamAuthorizer
 {
     public OwnAuthorizer()
     {
-        AddRuleSet(
-            IsEffectiveMember()
-                .Roles(["test"], ["Super"]));
+        //Effective member in org
+        Is(member
+            => member.IsEffective()
+                .IsMemberType()
+                .HasAgreementOneSigned()
+                .HasAgreementTwoSigned()
+                .InternalRoles(["SuperAdmin"]));
 
-        AddRuleSet(IsNonEffectiveMember()
-            .ExternalRoles(["MSA"]));
+        Is(member
+            => member.IsEffective()
+                .IsMemberType()
+                .HasAgreementOneSigned()
+                .HasAgreementTwoSigned()
+                .ExternalRoles(["MSA"]));
 
-        AddRuleSet(IsEffectiveServicer()
-            .InternalRoles(["VCA"]));
+        Is(member
+            => member.IsNonEffective()
+                .IsMemberType()
+                .HasAgreementOneSigned()
+                .HasAgreementTwoSigned()
+                .InternalRoles(["SuperAdmin"]));
+
+        Is(member
+            => member.IsEffective()
+                .IsMemberServicer()
+                .HasAgreementThreeSigned()
+                .ExternalRoles(["MSA"]));
     }
 }

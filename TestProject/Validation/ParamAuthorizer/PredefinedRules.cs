@@ -6,18 +6,6 @@ namespace TestProject.Validation.ParamAuthorizer;
 
 public static class PredefinedRules
 {
-    public static RuleSet Roles(this RuleSet ruleSet, List<string> allowedExternalRoles,
-        List<string> allowedInternalRoles)
-    {
-        ruleSet.AddRule(instance => instance.Roles.Any(assignedRole =>
-                                        allowedExternalRoles.Contains(assignedRole,
-                                            StringComparer.OrdinalIgnoreCase)) ||
-                                    instance.InternalRoles.Any(assignedInternalRole =>
-                                        allowedInternalRoles.Contains(assignedInternalRole,
-                                            StringComparer.OrdinalIgnoreCase)));
-        return ruleSet;
-    }
-
     public static RuleSet ExternalRoles(this RuleSet ruleSet, List<string> allowedExternalRoles)
     {
         ruleSet.AddRule(instance => instance.Roles.Any(assignedRole =>
