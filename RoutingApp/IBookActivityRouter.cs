@@ -4,5 +4,5 @@ namespace RoutingApp;
 
 public interface IBookActivityRouter
 {
-    IBookActivityOperation GetOperation(RouterParameters parameters);
+    Task<IBookActivityOperation> GetOperation(RouterParameters parameters);
 }

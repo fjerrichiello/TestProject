@@ -6,7 +6,7 @@ public class Handler(IRouterParameterFactory factory, IBookActivityRouter router
     {
         var parameters = await factory.GetParameters(command);
 
-        var operation = router.GetOperation(parameters);
+        var operation = await router.GetOperation(parameters);
 
         await operation.DoOperation();
     }
