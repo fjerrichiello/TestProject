@@ -5,7 +5,7 @@ namespace RoutingApp;
 
 public class BookActivityRouter(IServiceScopeFactory _serviceScopeFactory) : IBookActivityRouter
 {
-    public async Task<IBookActivityOperation> GetOperation(RouterParameters parameters)
+    public IBookActivityOperation GetOperation(RouterParameters parameters)
     {
         //Wires Operations in the future
         if (IsActionApplicable(parameters.Action))
@@ -17,50 +17,39 @@ public class BookActivityRouter(IServiceScopeFactory _serviceScopeFactory) : IBo
         {
             //Wires Operations in the future
 
-            return await GetOperation(typeof(NoOperation));
+            return new NoOperation();
         }
 
         if (parameters.EditBookRequest != null)
         {
-            return await GetEditBookRequestOperation(parameters);
+            return GetEditBookRequestOperation(parameters);
         }
 
         if (parameters.AddBookRequest != null)
         {
-            return await GetAddBookRequestOperation(parameters);
+            return GetAddBookRequestOperation(parameters);
         }
 
-        return await GetOperation(typeof(NoOperation));
+        return new NoOperation();
     }
 
     private static bool IsActionApplicable(IntegrationAction action)
         => !IntegrationAction.NotApplicable.Equals(action);
 
 
-    private async Task<IBookActivityOperation> GetAddBookRequestOperation(RouterParameters parameters)
+    private IBookActivityOperation GetAddBookRequestOperation(RouterParameters parameters)
         => parameters.Action switch
         {
-            IntegrationAction.Approved => await GetOperation(typeof(AddBookApproved)),
-            IntegrationAction.Denied => await GetOperation(typeof(AddBookDenied)),
-            _ => await GetOperation(typeof(NoOperation))
+            IntegrationAction.Approved => new AddBookApproved(),
+            IntegrationAction.Denied => new AddBookDenied(),
+            _ => new NoOperation()
         };
 
-    private async Task<IBookActivityOperation> GetEditBookRequestOperation(RouterParameters parameters)
+    private IBookActivityOperation GetEditBookRequestOperation(RouterParameters parameters)
         => parameters.Action switch
         {
-            IntegrationAction.Approved => await GetOperation(typeof(EditBookApproved)),
-            IntegrationAction.Denied => await GetOperation(typeof(EditBookDenied)),
-            _ => await GetOperation(typeof(NoOperation))
+            IntegrationAction.Approved => new EditBookApproved(),
+            IntegrationAction.Denied => new EditBookDenied(),
+            _ => new NoOperation()
         };
-
-    private async Task<IBookActivityOperation> GetOperation(Type serviceType)
-    {
-        await using var scope = _serviceScopeFactory.CreateAsyncScope();
-
-        //SET Metadata
-
-        var service = scope.ServiceProvider.GetRequiredKeyedService<IBookActivityOperation>(serviceType.Name);
-
-        return service;
-    }
 }
