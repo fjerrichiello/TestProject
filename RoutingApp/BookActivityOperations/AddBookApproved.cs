@@ -4,6 +4,6 @@ public class AddBookApproved : IBookActivityOperation
 {
     public async Task DoOperation()
     {
-        throw new NotImplementedException();
+        Console.WriteLine("AddBookApproved");
     }
 }

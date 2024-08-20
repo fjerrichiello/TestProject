@@ -3,21 +3,20 @@ using RoutingApp.BookActivityOperations;
 
 namespace RoutingApp;
 
-public class BookActivityRouter(IServiceScopeFactory _serviceScopeFactory) : IBookActivityRouter
+public class BookActivityRouter(IServiceProvider _serviceProvider) : IBookActivityRouter
 {
     public IBookActivityOperation GetOperation(RouterParameters parameters)
     {
         //Wires Operations in the future
-        if (IsActionApplicable(parameters.Action))
+        if (!IsActionApplicable(parameters.Action))
         {
-            return new NoOperation();
+            return _serviceProvider.GetRequiredKeyedService<NoOperation>(nameof(NoOperation));
         }
 
         if (parameters.Book != null)
         {
             //Wires Operations in the future
-
-            return new NoOperation();
+            return _serviceProvider.GetRequiredKeyedService<NoOperation>(nameof(NoOperation));
         }
 
         if (parameters.EditBookRequest != null)
@@ -30,7 +29,7 @@ public class BookActivityRouter(IServiceScopeFactory _serviceScopeFactory) : IBo
             return GetAddBookRequestOperation(parameters);
         }
 
-        return new NoOperation();
+        return _serviceProvider.GetRequiredKeyedService<NoOperation>(nameof(NoOperation));
     }
 
     private static bool IsActionApplicable(IntegrationAction action)
@@ -40,16 +39,19 @@ public class BookActivityRouter(IServiceScopeFactory _serviceScopeFactory) : IBo
     private IBookActivityOperation GetAddBookRequestOperation(RouterParameters parameters)
         => parameters.Action switch
         {
-            IntegrationAction.Approved => new AddBookApproved(),
-            IntegrationAction.Denied => new AddBookDenied(),
-            _ => new NoOperation()
+            IntegrationAction.Approved => _serviceProvider.GetRequiredKeyedService<AddBookApproved>(
+                nameof(AddBookApproved)),
+            IntegrationAction.Denied => _serviceProvider.GetRequiredKeyedService<AddBookDenied>(nameof(AddBookDenied)),
+            _ => _serviceProvider.GetRequiredKeyedService<NoOperation>(nameof(NoOperation))
         };
 
     private IBookActivityOperation GetEditBookRequestOperation(RouterParameters parameters)
         => parameters.Action switch
         {
-            IntegrationAction.Approved => new EditBookApproved(),
-            IntegrationAction.Denied => new EditBookDenied(),
-            _ => new NoOperation()
+            IntegrationAction.Approved => _serviceProvider.GetRequiredKeyedService<EditBookApproved>(
+                nameof(EditBookApproved)),
+            IntegrationAction.Denied =>
+                _serviceProvider.GetRequiredKeyedService<EditBookDenied>(nameof(EditBookDenied)),
+            _ => _serviceProvider.GetRequiredKeyedService<NoOperation>(nameof(NoOperation))
         };
 }

@@ -4,6 +4,6 @@ public class NoOperation : IBookActivityOperation
 {
     public async Task DoOperation()
     {
-        throw new NotImplementedException();
+        Console.WriteLine("NoOperation");
     }
 }

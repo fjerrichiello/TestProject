@@ -4,6 +4,6 @@ public class AddBookDenied : IBookActivityOperation
 {
     public async Task DoOperation()
     {
-        throw new NotImplementedException();
+        Console.WriteLine("AddBookDenied");
     }
 }
