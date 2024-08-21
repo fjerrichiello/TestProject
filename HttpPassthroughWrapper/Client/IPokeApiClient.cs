@@ -2,7 +2,7 @@
 
 namespace HttpPassthroughWrapper.Client;
 
-public interface IPokeApiClient
+public interface IPokeApiClient : IClient
 {
     Task<PokeApiResponse?> GetPokemonById(int id);
 
