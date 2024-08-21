@@ -5,7 +5,7 @@ namespace RoutingApp;
 public class Handler(
     IRouterParameterFactory factory,
     IBookActivityRouter router,
-    IKeyedServiceProvider keyedServiceProvider)
+    IServiceProvider keyedServiceProvider)
     : IHandler
 {
     public async Task UseHandler(Command command)
