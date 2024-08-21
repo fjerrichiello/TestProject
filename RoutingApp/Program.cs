@@ -1,10 +1,8 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using Microsoft.Extensions.DependencyInjection;
 using RoutingApp;
 using RoutingApp.BookActivityOperations;
 using RoutingApp.DummyResources;
-
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
