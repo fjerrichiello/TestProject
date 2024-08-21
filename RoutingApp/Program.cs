@@ -18,10 +18,13 @@ services.AddKeyedScoped<IBookActivityOperation, EditBookDenied>(nameof(EditBookD
 services.AddKeyedScoped<IBookActivityOperation, NoOperation>(nameof(NoOperation));
 
 services.AddScoped<IService1, Service1>();
-
 services.AddScoped<IService2, Service2>();
 
+services.AddScoped<IRepository1, Repository1>();
+services.AddScoped<IRepository2, Repository2>();
+
 services.AddScoped<IHandler, Handler>();
+services.AddScoped<IMetadataAccessor, MetadataAccessor>();
 services.AddEndpointsApiExplorer();
 services.AddSwaggerGen();
 
@@ -38,5 +41,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapGet("/test", async (IHandler handler) => { await handler.UseHandler(new Command(0, "1234")); });
+app.MapGet("/test", async (IHandler handler, IMetadataAccessor accessor) =>
+{
+    accessor.Metadata = "Start of data";
+    await handler.UseHandler(new Command(0, "1234"));
+});
 app.Run();

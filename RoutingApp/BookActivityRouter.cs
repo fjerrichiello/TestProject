@@ -55,4 +55,7 @@ public class BookActivityRouter(IServiceProvider _serviceProvider) : IBookActivi
                 _serviceProvider.GetRequiredKeyedService<IBookActivityOperation>(nameof(EditBookDenied)),
             _ => _serviceProvider.GetRequiredKeyedService<IBookActivityOperation>(nameof(NoOperation))
         };
+
+    private IBookActivityOperation GetKeyedService(Type type) =>
+        _serviceProvider.GetRequiredKeyedService<IBookActivityOperation>(type.Name);
 }
