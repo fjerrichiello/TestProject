@@ -1,0 +1,6 @@
+@HttpPassthroughWrapper_HostAddress = http://localhost:5091
+
+GET {{HttpPassthroughWrapper_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
