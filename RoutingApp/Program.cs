@@ -11,11 +11,7 @@ services.AddScoped<IRouterParameterFactory, RouterParameterFactory>();
 
 services.AddScoped<IBookActivityRouter, BookActivityRouter>();
 
-services.AddKeyedScoped<IBookActivityOperation, AddBookApproved>(nameof(AddBookApproved));
-services.AddKeyedScoped<IBookActivityOperation, AddBookDenied>(nameof(AddBookDenied));
-services.AddKeyedScoped<IBookActivityOperation, EditBookApproved>(nameof(EditBookApproved));
-services.AddKeyedScoped<IBookActivityOperation, EditBookDenied>(nameof(EditBookDenied));
-services.AddKeyedScoped<IBookActivityOperation, NoOperation>(nameof(NoOperation));
+services.AddOperations(typeof(AddBookApproved));
 
 services.AddScoped<IService1, Service1>();
 services.AddScoped<IService2, Service2>();

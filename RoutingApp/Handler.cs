@@ -1,12 +1,22 @@
-﻿namespace RoutingApp;
+﻿using RoutingApp.BookActivityOperations;
 
-public class Handler(IRouterParameterFactory factory, IBookActivityRouter router) : IHandler
+namespace RoutingApp;
+
+public class Handler(
+    IRouterParameterFactory factory,
+    IBookActivityRouter router,
+    IKeyedServiceProvider keyedServiceProvider)
+    : IHandler
 {
     public async Task UseHandler(Command command)
     {
         var parameters = await factory.GetParameters(command);
 
-        var operation = router.GetOperation(parameters);
+        var operationName = router.GetOperation(parameters);
+
+        var operation = keyedServiceProvider.GetKeyedService<IBookActivityOperation>(operationName);
+
+        if (operation is null) return;
 
         await operation.DoOperation();
     }
