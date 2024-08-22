@@ -1,4 +1,4 @@
-﻿namespace HttpPassthroughWrapper;
+﻿namespace HttpPassthroughWrapper.CustomResultObject;
 
 public class PasshthroughResult<T>
 {

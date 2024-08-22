@@ -1,10 +1,10 @@
 ﻿using System.Net.Mime;
 using System.Text.Json;
-using Microsoft.Net.Http.Headers;
 
-namespace HttpPassthroughWrapper;
+namespace HttpPassthroughWrapper.CustomResultObject;
 
 public class PassthroughHandler<T>(IServiceProvider serviceProvider) : IPassthroughHandler<T>
+    where T : IClient
 {
     public async Task<PasshthroughResult<TResult>> HandleAsync<TResult>(Func<T, Task<TResult>> operation)
     {

@@ -1,4 +1,4 @@
-﻿namespace HttpPassthroughWrapper;
+﻿namespace HttpPassthroughWrapper.CustomResultObject;
 
 public interface IPassthroughHandler<out T>
     where T : IClient

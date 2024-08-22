@@ -1,6 +1,8 @@
 using HttpPassthroughWrapper;
 using HttpPassthroughWrapper.Client;
 using HttpPassthroughWrapper.Client.Models;
+using HttpPassthroughWrapper.CustomResultObject;
+using HttpPassthroughWrapper.WithMapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +15,9 @@ builder.Services.AddScoped<IPokeApiClient, PokeApiClient>();
 builder.Services.AddHttpClient<IPokeApiClient, PokeApiClient>();
 
 builder.Services.AddScoped(typeof(IPassthroughHandler<>), typeof(PassthroughHandler<>));
+builder.Services.AddScoped(typeof(IPassthroughHandlerWithMapper<>), typeof(PassthroughHandlerWithMapper<>));
+
+builder.Services.AddScoped<IMapper<PokeApiResponse, PokemonApiDto>, ModelMapper>();
 
 var app = builder.Build();
 
@@ -25,19 +30,10 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapGet("/test", async (IPassthroughHandler<IPokeApiClient> httpPassthroughWrapper) =>
+app.MapGet("/test", async (IPassthroughHandlerWithMapper<IPokeApiClient> httpPassthroughWrapper) =>
     {
-        var result =
-            await httpPassthroughWrapper.HandleAsync<PokeApiResponse?>(async client => await client.GetPokemonById(1));
-
-        if (result.SucessResult is not null)
-        {
-            return Results.Ok(
-                result.SucessResult.Name
-            );
-        }
-
-        return result.ErrorResult;
+        return await httpPassthroughWrapper.HandleAsync<PokeApiResponse?, PokemonApiDto>(async client =>
+            await client.GetPokemonById(1));
     })
     .WithName("GetWeatherForecast")
     .WithOpenApi();
