@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoutingApp", "RoutingApp\Ro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpPassthroughWrapper", "HttpPassthroughWrapper\HttpPassthroughWrapper.csproj", "{D033509F-0418-4390-A8A1-C77AA7EA9F90}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataSeeding", "DataSeeding\DataSeeding.csproj", "{E567A34B-1FEA-4C4B-9305-33BC7A0329CB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{D033509F-0418-4390-A8A1-C77AA7EA9F90}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D033509F-0418-4390-A8A1-C77AA7EA9F90}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D033509F-0418-4390-A8A1-C77AA7EA9F90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E567A34B-1FEA-4C4B-9305-33BC7A0329CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E567A34B-1FEA-4C4B-9305-33BC7A0329CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E567A34B-1FEA-4C4B-9305-33BC7A0329CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E567A34B-1FEA-4C4B-9305-33BC7A0329CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

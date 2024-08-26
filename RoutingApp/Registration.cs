@@ -21,7 +21,7 @@ public static class Registration
 
         foreach (var serviceRegistration in serviceRegistrations)
         {
-            services.AddKeyedScoped(typeof(IBookActivityOperation), serviceRegistration.type.Name,
+            services.AddKeyedScoped(serviceRegistration.Interface, serviceRegistration.type.Name,
                 serviceRegistration.type);
         }
 
