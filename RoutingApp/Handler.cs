@@ -14,7 +14,7 @@ public class Handler(
 
         var operationName = router.GetOperation(parameters);
 
-        var operation = keyedServiceProvider.GetKeyedService<IBookActivityOperation>(operationName);
+        var operation = keyedServiceProvider.GetRequiredKeyedService<IBookActivityOperation>(operationName);
 
         if (operation is null) return;
 

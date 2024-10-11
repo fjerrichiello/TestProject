@@ -33,7 +33,7 @@ public class HandlerUnitTests
         _mockRouter.Setup(mock => mock.GetOperation(parameters)).Returns(nameof(AddBookApproved));
 
         _mockKeyedServiceProvider
-            .Setup(mock => mock.GetKeyedService(typeof(IBookActivityOperation), nameof(AddBookApproved)))
+            .Setup(mock => mock.GetRequiredKeyedService(typeof(IBookActivityOperation), nameof(AddBookApproved)))
             .Returns(Mock.Of<IBookActivityOperation>());
 
         await _handler.UseHandler(command);
