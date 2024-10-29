@@ -24,6 +24,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\Mapper\Mapper.csproj" />
         <ProjectReference Include="..\RoutingApp\RoutingApp.csproj" />
         <ProjectReference Include="..\TestProject\TestProject.csproj"/>
     </ItemGroup>
