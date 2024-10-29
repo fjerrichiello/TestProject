@@ -8,7 +8,7 @@ namespace DataFactoryUtilization.Verifiers;
 public class
     HandlerOneDataVerifier() : IVerifier<HandlerOneData, HandlerOneValidData>
 {
-    public async Task<VerificationResult<HandlerOneValidData>> Verify(
+    public VerificationResult<HandlerOneValidData> Verify(
         HandlerOneData parameters)
     {
         var verificationResult = new VerificationResult<HandlerOneValidData>();

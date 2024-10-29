@@ -2,6 +2,6 @@
 
 public interface IVerifier<in TParameters, TResult>
 {
-    Task<VerificationResult<TResult>> Verify(
+    VerificationResult<TResult> Verify(
         TParameters parameters);
 }
